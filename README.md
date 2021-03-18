@@ -1,4 +1,4 @@
-# restaurant-reservation-system
+# Restaurant Reservation System
 
 ### Steps to start working on an User Story:
 1. Choosing an issue (User Story) at [Issue Board](https://github.com/tranvnb/restaurant-reservation-system/issues) and assign to yourself.
