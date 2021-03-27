@@ -15,9 +15,30 @@
             <tr>
                 <th>Table Name</th>
                 <th>Number of Seat</th>
-                <th></th>
+                <th>Is Available</th>
+                <th>Delete</th>
+                <th>Update</th>
             </tr>
         </thead>
+        <tbody>
+        <tr th:each="table : ${tables}">
+            <td th:text="${table.getTableName()}"></td>
+            <td th:text="${table.getSeatNumber()}"></td>
+            <td th:text="${table.isAvailable()}"></td>
+            <td>
+                <a th:href="@{'/delete/' + ${table.getId()}}">Delete</a>
+            </td>
+            <td>
+                <a th:href="@{'/edit/' + ${table.getId()}}">Edit</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a th:href="@{'/create'}">Create</a>
+            </td>
+        </tr>
+        </tbody>
+
     </table>
 </div>
 
