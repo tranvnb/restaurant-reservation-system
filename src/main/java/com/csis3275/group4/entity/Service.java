@@ -11,7 +11,7 @@ public class Service {
     private String Service_Name;
     private int Service_Price;
 
-    protected Service(){}
+    public Service(){}
 
     public Service(String Service_Name, int Service_Price){
         this.Service_Name = Service_Name;

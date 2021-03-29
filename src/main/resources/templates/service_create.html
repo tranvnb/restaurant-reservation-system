@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Create Form</title>
+</head>
+<body>
+<div align="center">
+    <h1>Create Service</h1>
+    <form action="#" th:action="@{/addservice}" th:object="${service}" method="post">
+        <label>Service Name: </label>
+        <input type="text" th:field="*{service_Name}"><br>
+        <label>Service Price: </label>
+        <input type="number" th:field="*{service_Price}"><br>
+        <!--            <label>Is Available</label>-->
+        <!--            <input type="radio" th:field="*{isAvailable}" th:value="true">True-->
+        <!--            <input type="radio" th:field="*{isAvailable}" th:value="false">False<br>-->
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>

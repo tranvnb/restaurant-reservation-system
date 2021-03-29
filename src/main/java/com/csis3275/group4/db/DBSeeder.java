@@ -1,6 +1,9 @@
 package com.csis3275.group4.db;
 
+import com.csis3275.group4.entity.Service;
 import com.csis3275.group4.entity.Table;
+import com.csis3275.group4.repository.ServiceRepository;
+import com.csis3275.group4.repository.StaffRepository;
 import com.csis3275.group4.repository.TableRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -11,9 +14,11 @@ import java.util.List;
 @Component
 public class DBSeeder implements CommandLineRunner {
     private TableRepository tableRepository;
+    private ServiceRepository serviceRepository;
 
-    public DBSeeder(TableRepository tableRepository) {
+    public DBSeeder(TableRepository tableRepository,ServiceRepository serviceRepository) {
         this.tableRepository = tableRepository;
+        this.serviceRepository = serviceRepository;
     }
 
     @Override
@@ -74,11 +79,20 @@ public class DBSeeder implements CommandLineRunner {
                 true
         );
 
+        Service service1 = new Service("Service1",56);
+        Service service2 = new Service("Service2",32);
+        Service service3 = new Service("Service3",26);
+        Service service4 = new Service("Service4",88);
+        Service service5 = new Service("Service5",42);
+
         // drop all tables
         this.tableRepository.deleteAll();
+        this.serviceRepository.deleteAll();
 
         // add tables to database
         List<Table> tables = Arrays.asList(table1, table2, table3, table4, table5, table6, table7, table8, table9, table10, table11);
+        List<Service> services = Arrays.asList(service1,service2,service3,service4,service5);
         this.tableRepository.saveAll(tables);
+        this.serviceRepository.saveAll(services);
     }
 }

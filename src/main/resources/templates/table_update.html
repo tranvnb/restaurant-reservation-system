@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Table Update</title>
+    <link rel="stylesheet" th:href="@{/table_update.css}">
+
+</head>
+<body>
+<div align="center">
+<h1>Update Table</h1>
+    <form action="#" th:action="@{/update/{id}(id=${id})}" th:object="${table}" method="post">
+        <label>Table Name: </label>
+        <input type="text" th:field="*{tableName}"><br>
+        <label>Number of Seat: </label>
+        <input type="number" th:field="*{seatNumber}"><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>
