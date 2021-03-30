@@ -10,19 +10,21 @@ import java.util.List;
 public class Staff {
     @Id
     private String id;
-    private String Staff_Name;
-    private Date Staff_DOB;
-    private String Staff_Address;
-    private List<String> Staff_Shift;
+    private String staffName;
+    private Date staffDOB;
+    private String staffAddress;
+    private List<String> staffShift;
 
     protected Staff() {}
 
-    public Staff(String Staff_Name, Date Staff_DOB, String Staff_Address, List<String> Staff_Shift){
-        this.Staff_Name = Staff_Name;
-        this.Staff_DOB = Staff_DOB;
-        this.Staff_Address = Staff_Address;
-        this.Staff_Shift = Staff_Shift;
+    public Staff(String staffName, Date staffDOB, String staffAddress, List<String> staffShift){
+        this.staffName = staffName;
+        this.staffDOB = staffDOB;
+        this.staffAddress = staffAddress;
+        this.staffShift = staffShift;
     }
+
+
 
     public String getId() {
         return id;
@@ -32,35 +34,35 @@ public class Staff {
         this.id = id;
     }
 
-    public String getStaff_Name() {
-        return Staff_Name;
+    public String getStaffName() {
+        return staffName;
     }
 
-    public void setStaff_Name(String staff_Name) {
-        Staff_Name = staff_Name;
+    public void setStaffName(String staffName) {
+        this.staffName = staffName;
     }
 
-    public Date getStaff_DOB() {
-        return Staff_DOB;
+    public Date getStaffDOB() {
+        return staffDOB;
     }
 
-    public void setStaff_DOB(Date staff_DOB) {
-        Staff_DOB = staff_DOB;
+    public void setStaffDOB(Date staffDOB) {
+        this.staffDOB = staffDOB;
     }
 
-    public String getStaff_Address() {
-        return Staff_Address;
+    public String getStaffAddress() {
+        return staffAddress;
     }
 
-    public void setStaff_Address(String staff_Address) {
-        Staff_Address = staff_Address;
+    public void setStaffAddress(String staffAddress) {
+        this.staffAddress = staffAddress;
     }
 
-    public List<String> getStaff_Shift() {
-        return Staff_Shift;
+    public List<String> getStaffShift() {
+        return staffShift;
     }
 
-    public void setStaff_Shift(List<String> staff_Shift) {
-        Staff_Shift = staff_Shift;
+    public void setStaffShift(List<String> staffShift) {
+        this.staffShift = staffShift;
     }
 }

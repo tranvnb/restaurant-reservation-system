@@ -27,7 +27,7 @@ public class TableController {
         return "table_display";
     }
 
-    @GetMapping("/create")
+    @GetMapping("/createTable")
     public String createTableForm(Model model){
         Table table = new Table();
         model.addAttribute("table", table);
@@ -45,14 +45,14 @@ public class TableController {
 
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editTable/{id}")
     public String editTable(@PathVariable("id") String id, Model model){
         Table table = tableRepository.findById(id).get();
         model.addAttribute("table", table);
         return "table_update";
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/updateTable/{id}")
     public String updateTable(@PathVariable("id") String id, @ModelAttribute("table") Table table, BindingResult result, Model model){
         if(result.hasErrors()){
             table.setId(id);
@@ -63,7 +63,7 @@ public class TableController {
 
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/deleteTable/{id}")
     public String deteleTable(@PathVariable("id") String id, Model model){
         Table table = tableRepository.findById(id).get();
         tableRepository.delete(table);

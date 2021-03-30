@@ -8,14 +8,14 @@ public class Service {
 
     @Id
     private String id;
-    private String Service_Name;
-    private int Service_Price;
+    private String serviceName;
+    private int servicePrice;
 
-    protected Service(){}
+    public Service(){}
 
-    public Service(String Service_Name, int Service_Price){
-        this.Service_Name = Service_Name;
-        this.Service_Price = Service_Price;
+    public Service(String serviceName, int servicePrice){
+        this.serviceName = serviceName;
+        this.servicePrice = servicePrice;
     }
 
     public String getId() {
@@ -26,19 +26,19 @@ public class Service {
         this.id = id;
     }
 
-    public String getService_Name() {
-        return Service_Name;
+    public String getServiceName() {
+        return serviceName;
     }
 
-    public void setService_Name(String service_Name) {
-        Service_Name = service_Name;
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
     }
 
-    public int getService_Price() {
-        return Service_Price;
+    public int getServicePrice() {
+        return servicePrice;
     }
 
-    public void setService_Price(int service_Price) {
-        Service_Price = service_Price;
+    public void setServicePrice(int servicePrice) {
+        this.servicePrice = servicePrice;
     }
 }

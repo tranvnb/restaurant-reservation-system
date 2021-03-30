@@ -4,8 +4,8 @@
       layout:decorate="default">
 <head>
     <meta charset="UTF-8">
-    <title>The List of Tables</title>
-    <link rel="stylesheet" th:href="@{/table_display.css}">
+    <title>Service Display</title>
+    <link rel="stylesheet" th:href="@{/service_display.css}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 </head>
 <body>
@@ -29,44 +29,42 @@
             </a>
         </div>
     </nav>
-    <h1>Welcome to the Vancouver Restaurant</h1><br>
-<!--    <a href="/table">Click here to see tables</a><br>-->
-    <a href="/service">Click here to see Service</a><br>
+    <h1>Welcome to the Vancouver Restaurant</h1>
+    <a href="/table">Click here to see tables</a><br>
+<!--    <a href="/service">Click here to see Service</a><br>-->
     <a href="/staff">Click here to see Staff</a><br>
     <a href="/booking">Click here to see Booking</a><br><hr>
 
-    <h1>The List of Tables</h1>
+    <h1>The List of Service</h1>
     <table>
         <thead>
-            <tr>
-                <th>Table Name</th>
-                <th>Number of Seat</th>
-                <th>Is Available</th>
-                <th>Delete</th>
-                <th>Edit</th>
-            </tr>
+        <tr>
+            <th>Service Name</th>
+            <th>Service Price</th>
+            <th>Delete</th>
+            <th>Update</th>
+        </tr>
         </thead>
         <tbody>
-        <tr th:each="table : ${tables}">
-            <td th:text="${table.getTableName()}"></td>
-            <td th:text="${table.getSeatNumber()}"></td>
-            <td th:text="${table.isAvailable()}"></td>
+        <tr th:each="service: ${services}">
+            <td th:text="${service.getServiceName()}"></td>
+            <td th:text="${service.getServicePrice()}"></td>
             <td>
-                <a th:href="@{'/deleteTable/' + ${table.getId()}}">Delete</a>
+                <a th:href="@{'/delete/' + ${service.getId()}}">Delete</a>
             </td>
             <td>
-                <a th:href="@{'/editTable/' + ${table.getId()}}">Edit</a>
+                <a th:href="@{'/edit/' + ${service.getId()}}">Edit</a>
             </td>
         </tr>
         <tr>
             <td>
-                <a th:href="@{'/createTable'}">Create</a>
+                <a th:href="@{'/create'}">Create</a>
             </td>
         </tr>
         </tbody>
-
     </table>
 </div>
+
 
 </body>
 </html>
