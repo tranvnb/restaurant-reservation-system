@@ -48,11 +48,19 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="staff : ${staffList}">
+        <tr th:each="staff : ${staffList}" >
             <td th:text="${staff.getStaffName()}"></td>
             <td th:text="${staff.getStaffDOB()}"></td>
             <td th:text="${staff.getStaffAddress()}"></td>
             <td th:text="${staff.getStaffShift()}"></td>
+<!--            <td>-->
+<!--                <select th:field="${staff.getStaffShift()}" th:multiple="multiple">-->
+<!--                    <option th:each="shift : ${staff.getStaffShift()}"-->
+<!--                            th:text="${shift}"-->
+<!--                            th:value="${shift}">-->
+<!--                    </option>-->
+<!--                </select>-->
+<!--            </td>-->
             <td>
                 <a th:href="@{'/deleteStaff/' + ${staff.getId()}}">Delete</a>
             </td>

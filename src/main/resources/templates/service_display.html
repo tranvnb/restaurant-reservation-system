@@ -9,6 +9,30 @@
 </head>
 <body>
 <div align="center">
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                Home
+            </a>
+            <a class="navbar-brand" href="/table">
+                Table
+            </a>
+            <a class="navbar-brand" href="/service">
+                Service
+            </a>
+            <a class="navbar-brand" href="/staff">
+                Staff
+            </a>
+            <a class="navbar-brand" href="/booking">
+                Booking
+            </a>
+        </div>
+    </nav>
+    <h1>Welcome to the Vancouver Restaurant</h1><br>
+    <a href="/table">Click here to see tables</a><br>
+<!--    <a href="/service">Click here to see Service</a><br>-->
+    <a href="/staff">Click here to see Staff</a><br>
+    <a href="/booking">Click here to see Booking</a><br><hr>
     <h1>The List of Services</h1>
     <table>
         <thead>
@@ -21,8 +45,8 @@
         </thead>
         <tbody>
         <tr th:each="service : ${services}">
-            <td th:text="${service.getService_Name()}"></td>
-            <td th:text="${service.getService_Price()}"></td>
+            <td th:text="${service.getServiceName()}"></td>
+            <td th:text="${service.getServicePrice()}"></td>
             <td>
                 <a th:href="@{'/deleteservice/' + ${service.getId()}}">Delete</a>
             </td>

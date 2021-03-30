@@ -15,7 +15,7 @@ public class Staff {
     private String staffAddress;
     private List<String> staffShift;
 
-    protected Staff() {}
+    public Staff() {}
 
     public Staff(String staffName, Date staffDOB, String staffAddress, List<String> staffShift){
         this.staffName = staffName;
