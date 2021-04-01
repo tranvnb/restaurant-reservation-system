@@ -34,6 +34,13 @@
     <a href="/service">Click here to see Service</a><br>
     <a href="/staff">Click here to see Staff</a><br>
     <a href="/booking">Click here to see Booking</a><br>
+    <form action="#" th:action="@{/availableTable/{date}{time}}"  method="get">
+        <label>Date:</label>
+        <input type="date" th:name="date" name="date"><br><br>
+        <label >Time:</label>
+        <input type="number" th:name="time" name="time"><br><br>
+        <input type="submit" value="Submit">
+    </form>
 </div>
 </body>
 </html>

@@ -1,20 +1,26 @@
 package com.csis3275.group4.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+@Document(collection ="Booking")
 public class Booking {
+    @Id
     private String id;
     private Customer customer;
-    private Date Booking_Date;
-    private Time Booking_Time;
+    private String bookingDate;
+    private int bookingTime;
     private List<Service> services;
     private List<Table> tables;
     private List<Staff> staff;
 
-    protected Booking() {
+    public Booking() {
         this.services = new ArrayList<Service>();
         this.tables = new ArrayList<Table>();
         this.staff = new ArrayList<Staff>();
@@ -36,20 +42,20 @@ public class Booking {
         this.customer = customer;
     }
 
-    public Date getBooking_Date() {
-        return Booking_Date;
+    public String getBooking_Date() {
+        return bookingDate;
     }
 
-    public void setBooking_Date(Date booking_Date) {
-        Booking_Date = booking_Date;
+    public void setBooking_Date(String booking_Date) {
+        bookingDate = booking_Date;
     }
 
-    public Time getBooking_Time() {
-        return Booking_Time;
+    public int getBooking_Time() {
+        return bookingTime;
     }
 
-    public void setBooking_Time(Time booking_Time) {
-        Booking_Time = booking_Time;
+    public void setBooking_Time(int booking_Time) {
+        bookingTime = booking_Time;
     }
 
     public List<Service> getServices() {
