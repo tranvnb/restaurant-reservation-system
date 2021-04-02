@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
+
 @Controller
 @RequestMapping("/booking")
 public class BookingController {
@@ -60,6 +62,7 @@ public class BookingController {
         model.addAttribute("availableServices", serviceService.getAll());
         model.addAttribute("availableTables", tableService.getAllAvailable());
         model.addAttribute("staff", staffService.getAll());
+        model.addAttribute("today", LocalDate.now());
 
         return "booking_create";
     }
