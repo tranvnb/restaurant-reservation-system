@@ -1,11 +1,9 @@
 package com.csis3275.group4.repository;
 
+import com.csis3275.group4.entity.Booking;
 import org.springframework.data.mongodb.repository.MongoRepository;
-
-import com.csis3275.group4.entity.User;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends MongoRepository<User, Integer>{
-
+public interface BookingRepository extends MongoRepository<Booking, String> {
 }

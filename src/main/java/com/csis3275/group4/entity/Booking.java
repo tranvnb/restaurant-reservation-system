@@ -1,20 +1,37 @@
 package com.csis3275.group4.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Document(collection = "Booking")
 public class Booking {
+    @Id
     private String id;
-    private Customer customer;
-    private Date Booking_Date;
-    private Time Booking_Time;
+    //    @DBRef
+    public Customer customer;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate bookingDate;
+
+    @DateTimeFormat(pattern = "HH:mm")
+    private LocalTime bookingTime;
+//    @DBRef
     private List<Service> services;
+//    @DBRef
     private List<Table> tables;
+//    @DBRef
     private List<Staff> staff;
 
-    protected Booking() {
+    public Booking() {
+        this.customer = new Customer();
         this.services = new ArrayList<Service>();
         this.tables = new ArrayList<Table>();
         this.staff = new ArrayList<Staff>();
@@ -34,22 +51,6 @@ public class Booking {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public Date getBooking_Date() {
-        return Booking_Date;
-    }
-
-    public void setBooking_Date(Date booking_Date) {
-        Booking_Date = booking_Date;
-    }
-
-    public Time getBooking_Time() {
-        return Booking_Time;
-    }
-
-    public void setBooking_Time(Time booking_Time) {
-        Booking_Time = booking_Time;
     }
 
     public List<Service> getServices() {
@@ -75,4 +76,21 @@ public class Booking {
     public void setStaff(List<Staff> staff) {
         this.staff = staff;
     }
+
+    public LocalDate getBookingDate() {
+        return bookingDate;
+    }
+
+    public void setBookingDate(LocalDate bookingDate) {
+        this.bookingDate = bookingDate;
+    }
+
+    public LocalTime getBookingTime() {
+        return bookingTime;
+    }
+
+    public void setBookingTime(LocalTime bookingTime) {
+        this.bookingTime = bookingTime;
+    }
 }
+

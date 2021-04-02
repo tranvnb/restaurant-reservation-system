@@ -5,8 +5,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.csis3275.group4.entity.Report;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class ReportService implements IService<Report> {
 
 	@Override

@@ -5,8 +5,19 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.csis3275.group4.entity.Table;
+import com.csis3275.group4.repository.TableRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TableService implements IService<Table>{
+
+	@Autowired
+	private TableRepository tableRepository;
+
+	public TableService(TableRepository tableRepository) {
+		this.tableRepository = tableRepository;
+	}
 
 	@Override
 	public void add(Table obj) {
@@ -29,7 +40,7 @@ public class TableService implements IService<Table>{
 	@Override
 	public List<Table> getAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.tableRepository.findAll();
 	}
 
 	@Override
@@ -38,5 +49,15 @@ public class TableService implements IService<Table>{
 		return null;
 	}
 
-	
+	public List<Table> getAllAvailable() {
+		return this.tableRepository.findAllAvailable();
+	}
+
+	public void updateAvailable(String Id, boolean isAvailable) {
+		Table updateTable = this.tableRepository.findById(Id).orElse(null);
+		if (updateTable != null) {
+			updateTable.setAvailable(isAvailable);
+			this.tableRepository.save(updateTable);
+		}
+	}
 }

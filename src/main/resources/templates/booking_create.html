@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center">
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                Home
+            </a>
+            <a class="navbar-brand" href="/table">
+                Table
+            </a>
+            <a class="navbar-brand" href="/service">
+                Service
+            </a>
+            <a class="navbar-brand" href="/staff">
+                Staff
+            </a>
+            <a class="navbar-brand" href="/booking">
+                Booking
+            </a>
+        </div>
+    </nav>
+    <h1>Welcome to the Vancouver Restaurant</h1><br>
+    <a href="/table">Click here to see tables</a><br>
+    <!--    <a href="/service">Click here to see Service</a><br>-->
+    <a href="/staff">Click here to see Staff</a><br>
+    <a href="/booking">Click here to see Booking</a><br><hr>
+    <h1>New Booking</h1>
+    <form th:action="@{/booking/new}" th:object="${booking}" method="post">
+        <label>ID</label>
+        <label>Customer Name: </label>
+        <input type="text" th:field="*{customer.customerName}" />
+        <br/>
+        <label>Customer Phone: </label>
+        <input type="text" th:field="*{customer.customerPhone}" />
+        <br/>
+        <label>Available Table : </label>
+        <select th:field="*{tables}" multiple="multiple">
+            <option th:each="table : ${availableTables}"
+                    th:value="${table.getId()}"
+                    th:text="${table.getTableName()}" ></option>
+        </select>
+        <br/>
+        <label>Available Services : </label>
+        <select th:field="*{services}" multiple="multiple">
+            <option th:each="service : ${availableServices}"
+                    th:value="${service.getId()}"
+                    th:text="${service.getServiceName()}"></option>
+        </select>
+        <br/>
+        <label>Booking Date: </label>
+        <input type="date" th:field="*{bookingDate}" />
+        <br/>
+        <label>Booking Time: </label>
+        <input type="time" th:field="*{bookingTime}" />
+        <br/>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>
