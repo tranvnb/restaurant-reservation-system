@@ -8,6 +8,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -15,19 +16,13 @@ import java.util.List;
 public class Booking {
     @Id
     private String id;
-    //    @DBRef
-    public Customer customer;
-
+    private Customer customer;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate bookingDate;
-
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime bookingTime;
-//    @DBRef
     private List<Service> services;
-//    @DBRef
     private List<Table> tables;
-//    @DBRef
     private List<Staff> staff;
 
     public Booking() {

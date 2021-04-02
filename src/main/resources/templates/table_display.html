@@ -58,6 +58,13 @@
                 <a th:href="@{'/editTable/' + ${table.getId()}}">Edit</a>
             </td>
         </tr>
+        <tr th:each="booking : ${bookings}">
+            <td th:text="${booking.getBooking_Date()}"></td>
+            <td th:text="${booking.getBooking_Time()}"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
         <tr>
             <td>
                 <a th:href="@{'/createTable'}">Create</a>

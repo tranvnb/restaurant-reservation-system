@@ -1,8 +1,10 @@
 package com.csis3275.group4.db;
 
+import com.csis3275.group4.entity.Booking;
 import com.csis3275.group4.entity.Service;
 import com.csis3275.group4.entity.Staff;
 import com.csis3275.group4.entity.Table;
+import com.csis3275.group4.repository.BookingRepository;
 import com.csis3275.group4.repository.ServiceRepository;
 import com.csis3275.group4.repository.StaffRepository;
 import com.csis3275.group4.repository.TableRepository;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -20,15 +23,21 @@ public class DBSeeder implements CommandLineRunner {
     private TableRepository tableRepository;
     private ServiceRepository serviceRepository;
     private StaffRepository staffRepository;
+    private BookingRepository bookingRepository;
 
-    public DBSeeder(TableRepository tableRepository, ServiceRepository serviceRepository, StaffRepository staffRepository) {
+    public DBSeeder(TableRepository tableRepository, ServiceRepository serviceRepository, StaffRepository staffRepository,BookingRepository bookingRepository) {
         this.tableRepository = tableRepository;
         this.serviceRepository = serviceRepository;
         this.staffRepository = staffRepository;
+        this.bookingRepository = bookingRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
+        bookingRepository.deleteAll();
+        Booking testBooking = new Booking();
+        testBooking.setBookingTime(LocalTime.of(22,00));
+        testBooking.setBookingDate(LocalDate.of(2021,04,06));
         //create tables
         Table table1 = new Table(
             "Table1",
@@ -38,7 +47,7 @@ public class DBSeeder implements CommandLineRunner {
         Table table2 = new Table(
                 "Table2",
                 4,
-                true
+                false
         );
         Table table3= new Table(
                 "Table3",
@@ -53,7 +62,7 @@ public class DBSeeder implements CommandLineRunner {
         Table table5 = new Table(
                 "Table5",
                 6,
-                true
+                false
         );
         Table table6 = new Table(
                 "Table6",
@@ -93,6 +102,8 @@ public class DBSeeder implements CommandLineRunner {
         List<Table> tables = Arrays.asList(table1, table2, table3, table4, table5, table6, table7, table8, table9, table10, table11);
         this.tableRepository.saveAll(tables);
 
+        testBooking.getTables().add(table1);
+        bookingRepository.save(testBooking);
         // create services
         Service service1 = new Service(
                 "Lunch",

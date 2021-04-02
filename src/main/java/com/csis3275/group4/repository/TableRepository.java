@@ -11,6 +11,5 @@ import java.util.List;
 @Repository
 public interface TableRepository extends MongoRepository<Table, String>{
 
-    @Query("{ 'isAvailable' : true }")
-    List<Table> findAllAvailable();
+    List<Table> findByisAvailableIsTrue(boolean isAvailable);
 }

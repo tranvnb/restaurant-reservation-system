@@ -50,7 +50,7 @@ public class TableService implements IService<Table>{
 	}
 
 	public List<Table> getAllAvailable() {
-		return this.tableRepository.findAllAvailable();
+		return this.tableRepository.findByisAvailableIsTrue(true);
 	}
 
 	public void updateAvailable(String Id, boolean isAvailable) {
