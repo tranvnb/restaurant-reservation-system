@@ -17,13 +17,13 @@ public class UserService implements IService<User> {
 	}
 
 	@Override
-	public void delete(UUID Id) {
+	public void delete(String Id) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update(UUID Id, User obj) {
+	public void update(String Id, User obj) {
 		// TODO Auto-generated method stub
 		
 	}

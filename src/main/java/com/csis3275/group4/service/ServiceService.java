@@ -21,13 +21,13 @@ public class ServiceService implements IService<Service> {
 	}
 
 	@Override
-	public void delete(UUID Id) {
+	public void delete(String Id) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update(UUID Id, Service obj) {
+	public void update(String Id, Service obj) {
 		// TODO Auto-generated method stub
 		
 	}

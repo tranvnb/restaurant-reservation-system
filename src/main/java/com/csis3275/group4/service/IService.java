@@ -6,8 +6,8 @@ import java.util.UUID;
 
 public interface IService<T> {
 	void add(T obj);
-    void delete(UUID Id);
-    void update(UUID Id, T obj);
+    void delete(String Id);
+    void update(String Id, T obj);
     List<T> getAll();
     Optional<T> getById(UUID Id);
 }

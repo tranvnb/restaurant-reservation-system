@@ -8,12 +8,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequestMapping("/booking")
@@ -65,5 +63,47 @@ public class BookingController {
         model.addAttribute("today", LocalDate.now());
 
         return "booking_create";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editBooking(@PathVariable("id") String Id, Model model) {
+        Booking booking = this.bookingService.findById(Id);
+        List<Table> availableTables = this.tableService.getAllAvailable();
+
+        // add all available tables
+        availableTables.addAll(booking.getTables());
+        booking.setTables(availableTables);
+
+        model.addAttribute("booking", booking);
+        model.addAttribute("bookingId", Id);
+        model.addAttribute("availableServices", serviceService.getAll());
+        model.addAttribute("today", LocalDate.now());
+        return "booking_edit";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String updateBooking(@PathVariable("id") String Id, @ModelAttribute("booking") Booking booking, Model model) {
+
+        bookingService.update(Id, booking);
+        for (Table table:
+                booking.getTables()) {
+            tableService.updateAvailable(table.getId(), false);
+        }
+
+        return "redirect:/booking";
+    }
+
+    @GetMapping("/{id}/delete")
+    public String deleteBooking(@PathVariable("id") String Id, Model model) {
+
+        Booking booking = this.bookingService.findById(Id);
+        if (booking != null) {
+            for (Table table :
+                    booking.getTables()) {
+                tableService.updateAvailable(table.getId(), true);
+            }
+            this.bookingService.delete(Id);
+        }
+        return "redirect:/booking";
     }
 }

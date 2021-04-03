@@ -17,13 +17,13 @@ public class ReportService implements IService<Report> {
 	}
 
 	@Override
-	public void delete(UUID Id) {
+	public void delete(String Id) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update(UUID Id, Report obj) {
+	public void update(String Id, Report obj) {
 		// TODO Auto-generated method stub
 		
 	}
