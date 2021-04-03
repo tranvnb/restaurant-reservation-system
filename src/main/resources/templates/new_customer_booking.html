@@ -13,30 +13,18 @@
             <a class="navbar-brand" href="/">
                 Home
             </a>
-            <a class="navbar-brand" href="/table">
-                Table
-            </a>
-            <a class="navbar-brand" href="/service">
-                Service
-            </a>
             <a class="navbar-brand" href="/staff">
                 Staff
             </a>
-            <a class="navbar-brand" href="/booking">
-                Booking
+            <a class="navbar-brand" href="/managerdashboard">
+                Manager
             </a>
         </div>
     </nav>
-    <h1>Welcome to the Vancouver Restaurant</h1><br>
-    <a href="/table">Click here to see tables</a><br>
-    <!--    <a href="/service">Click here to see Service</a><br>-->
-    <a href="/staff">Click here to see Staff</a><br>
-    <a href="/booking">Click here to see Booking</a><br>
-    <hr>
     <h1>New Booking</h1>
     <div class="container-fluid row">
         <div class="col-6 offset-3" align="left">
-            <form th:action="@{/booking/new}" th:object="${booking}" method="post">
+            <form th:action="@{/addcustomerbooking}" th:object="${booking}" method="post">
                 <div class="mb-3">
                     <label class="form-label">Customer Name</label>
                     <input type="text" th:field="*{customer.customerName}" class="form-control" >
