@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -35,8 +36,8 @@ public class DBSeeder implements CommandLineRunner {
     public void run(String... args) throws Exception {
         bookingRepository.deleteAll();
         Booking testBooking = new Booking();
-        testBooking.setBooking_Time(22);
-        testBooking.setBooking_Date("2021-04-06");
+        testBooking.setBookingTime(LocalTime.of(22,00));
+        testBooking.setBookingDate(LocalDate.of(2021,04,06));
         //create tables
         Table table1 = new Table(
             "Table1",

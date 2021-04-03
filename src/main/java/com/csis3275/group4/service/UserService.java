@@ -5,7 +5,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.csis3275.group4.entity.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserService implements IService<User> {
 
 	@Override
