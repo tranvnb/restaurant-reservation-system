@@ -25,13 +25,24 @@ public class BookingService implements IService<Booking> {
     }
 
     @Override
-    public void delete(UUID Id) {
-
+    public void delete(String Id) {
+        this.bookingRepository.deleteById(Id);
     }
 
     @Override
-    public void update(UUID Id, Booking obj) {
+    public void update(String Id, Booking obj) {
+        Booking updateBooking = this.findById(Id);
 
+        if (updateBooking != null) {
+            updateBooking.setBookingTime(obj.getBookingTime());
+            updateBooking.setBookingDate(obj.getBookingDate());
+            updateBooking.setServices(obj.getServices());
+            updateBooking.setTables(obj.getTables());
+            updateBooking.setCustomer(obj.getCustomer());
+            updateBooking.setStaff(obj.getStaff());
+
+            this.bookingRepository.save(updateBooking);
+        }
     }
 
     @Override
@@ -44,4 +55,7 @@ public class BookingService implements IService<Booking> {
         return Optional.empty();
     }
 
+    public Booking findById(String id) {
+        return this.bookingRepository.findAll().stream().filter(item -> item.getId().equals(id)).findFirst().orElse(null);
+    }
 }

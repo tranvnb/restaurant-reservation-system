@@ -25,12 +25,12 @@ public class StaffService implements IService<Staff> {
     }
 
     @Override
-    public void delete(UUID Id) {
+    public void delete(String Id) {
 
     }
 
     @Override
-    public void update(UUID Id, Staff obj) {
+    public void update(String Id, Staff obj) {
 
     }
 

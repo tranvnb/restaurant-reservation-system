@@ -26,13 +26,13 @@ public class TableService implements IService<Table>{
 	}
 
 	@Override
-	public void delete(UUID Id) {
+	public void delete(String Id) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update(UUID Id, Table obj) {
+	public void update(String Id, Table obj) {
 		// TODO Auto-generated method stub
 		
 	}
