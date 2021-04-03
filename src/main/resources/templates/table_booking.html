@@ -24,14 +24,8 @@
         <td th:text="${table.getSeatNumber()}"></td>
         <td th:text="${table.isAvailable()}"></td>
         <td>
-            <a th:href="@{'/deleteTable/' + ${table.getId()}}">Book</a>
+            <a th:href="@{'/customerbooking/' + ${table.getId()}+'date='+${date}+'time='+${time}}">Book</a>
         </td>
-    </tr>
-    <tr th:each="booking : ${bookings}">
-        <td th:text="${booking.getBooking_Date()}"></td>
-        <td th:text="${booking.getBooking_Time()}"></td>
-        <td></td>
-        <td></td>
     </tr>
     </tbody>
 

@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -106,4 +108,20 @@ public class BookingController {
         }
         return "redirect:/booking";
     }
+
+//    @GetMapping("/customerbooking/{date}{time}")
+//    public String customerAddBooking(@PathVariable("id") String id,@PathVariable(value ="date") String date, @PathVariable(value = "time") String time, Model model){
+//        Booking newBooking = new Booking();
+//        LocalDate d = (LocalDate.of(2021,04,06));
+//        LocalTime t = LocalTime.of(22,00);
+//        List<Table> tempTable = new ArrayList<>();
+//        tempTable.add(tableService.getThisTable(id));
+//        newBooking.setTables(tempTable);
+//        newBooking.setBookingDate(d);
+//        newBooking.setBookingTime(t);
+//        this.bookingService.add(newBooking);
+//
+//        return "redirect:/booking";
+//    }
+
 }
