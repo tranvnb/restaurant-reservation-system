@@ -38,6 +38,12 @@ public class TableController {
         this.tableRepository = tableRepository;
     }
 
+    @GetMapping("/managerdashboard")
+    public String managerDashboard() {
+        return "manager_dashboard";
+    }
+
+
     @GetMapping("/table")
     public String showTable(Model model){
         model.addAttribute("tables", tableRepository.findAll());
@@ -81,6 +87,12 @@ public class TableController {
         model.addAttribute("table", table);
         model.addAttribute("availableServices", serviceService.getAll());
         return "new_customer_booking";
+    }
+    @PostMapping("/addcustomerbooking")
+    public String addBooking(@ModelAttribute("booking") Booking booking, Model model) {
+        bookingRepository.save(booking);
+
+        return "/booksuccess";
     }
 
     @PostMapping("/updateTable/{id}")
