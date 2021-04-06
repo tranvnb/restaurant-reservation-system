@@ -4,6 +4,8 @@ import com.csis3275.group4.entity.Booking;
 import com.csis3275.group4.entity.Table;
 import com.csis3275.group4.repository.BookingRepository;
 import com.csis3275.group4.repository.TableRepository;
+import com.csis3275.group4.service.BookingService;
+import com.csis3275.group4.service.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.aggregation.ArithmeticOperators;
 import org.springframework.data.repository.query.Param;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,17 +31,22 @@ public class TableController {
     private TableRepository tableRepository;
     @Autowired
     private BookingRepository bookingRepository;
+    @Autowired
+    private ServiceService serviceService;
 
     public TableController(TableRepository tableRepository) {
         this.tableRepository = tableRepository;
     }
 
+    @GetMapping("/managerdashboard")
+    public String managerDashboard() {
+        return "manager_dashboard";
+    }
+
+
     @GetMapping("/table")
     public String showTable(Model model){
-        List<Table> allTables = tableRepository.findAll();
-        for(Table o : allTables){o.setAvailable(true);tableRepository.save(o);}
         model.addAttribute("tables", tableRepository.findAll());
-        model.addAttribute("bookings",bookingRepository.findByBookingDateAndBookingTime("2021-04-06",22));
         return "table_display";
     }
 
@@ -65,6 +74,26 @@ public class TableController {
         model.addAttribute("table", table);
         return "table_update";
     }
+    @GetMapping("/customerbooking/{id}date={date}time={time}")
+    public String newCustomerBooking(@PathVariable("id") String id ,@PathVariable String date,@PathVariable String time,Model model){
+        Booking newBooking = new Booking();
+        newBooking.setBookingDate(LocalDate.parse(date));
+        newBooking.setBookingTime(LocalTime.parse(time));
+        List<Table> tempList = new ArrayList<>();
+        Table table = tableRepository.findById(id).get();
+        tempList.add(table);
+        newBooking.setTables(tempList);
+        model.addAttribute("booking",newBooking);
+        model.addAttribute("table", table);
+        model.addAttribute("availableServices", serviceService.getAll());
+        return "new_customer_booking";
+    }
+    @PostMapping("/addcustomerbooking")
+    public String addBooking(@ModelAttribute("booking") Booking booking, Model model) {
+        bookingRepository.save(booking);
+
+        return "/booksuccess";
+    }
 
     @PostMapping("/updateTable/{id}")
     public String updateTable(@PathVariable("id") String id, @ModelAttribute("table") Table table, BindingResult result, Model model){
@@ -89,13 +118,15 @@ public class TableController {
         if(date == "" || time == ""){
             return "index";
         }
-        int t = Integer.valueOf(time);
-
+        LocalDate d = LocalDate.parse(date);
+        LocalTime t = LocalTime.parse(time);
         List<Table> allTables = tableRepository.findAll();
         for(Table o : allTables){o.setAvailable(true);tableRepository.save(o);}
-        List<Booking> bookedTables = bookingRepository.findByBookingDateAndBookingTime(date,t);
+        List<Booking> bookedTables = bookingRepository.findByBookingDateAndBookingTime(d,t);
 
         if(bookedTables == null){
+            model.addAttribute("date",date);
+            model.addAttribute("time",time);
             model.addAttribute("tables", tableRepository.findByisAvailableIsTrue(true));
             return "table_booking";
         }
@@ -105,6 +136,8 @@ public class TableController {
             table.setAvailable(false);
             tableRepository.save(table);
         }
+        model.addAttribute("date",date);
+        model.addAttribute("time",time);
         model.addAttribute("tables", tableRepository.findByisAvailableIsTrue(true));
         return "table_booking";
     }
