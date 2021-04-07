@@ -103,7 +103,6 @@ public class TableController {
         }
         tableRepository.save(table);
         return "redirect:/table";
-
     }
 
     @GetMapping("/deleteTable/{id}")

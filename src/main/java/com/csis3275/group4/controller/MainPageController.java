@@ -1,2 +1,11 @@
-package com.csis3275.group4.controller;public class LoginController {
+package com.csis3275.group4.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/main")
+public class MainPageController {
+
+
 }
