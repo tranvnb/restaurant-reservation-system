@@ -1,13 +1,7 @@
 package com.csis3275.group4.db;
 
-import com.csis3275.group4.entity.Booking;
-import com.csis3275.group4.entity.Service;
-import com.csis3275.group4.entity.Staff;
-import com.csis3275.group4.entity.Table;
-import com.csis3275.group4.repository.BookingRepository;
-import com.csis3275.group4.repository.ServiceRepository;
-import com.csis3275.group4.repository.StaffRepository;
-import com.csis3275.group4.repository.TableRepository;
+import com.csis3275.group4.entity.*;
+import com.csis3275.group4.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -24,12 +18,14 @@ public class DBSeeder implements CommandLineRunner {
     private ServiceRepository serviceRepository;
     private StaffRepository staffRepository;
     private BookingRepository bookingRepository;
+    private UserRepository userRepository;
 
-    public DBSeeder(TableRepository tableRepository, ServiceRepository serviceRepository, StaffRepository staffRepository,BookingRepository bookingRepository) {
+    public DBSeeder(TableRepository tableRepository, ServiceRepository serviceRepository, StaffRepository staffRepository,BookingRepository bookingRepository, UserRepository userRepository) {
         this.tableRepository = tableRepository;
         this.serviceRepository = serviceRepository;
         this.staffRepository = staffRepository;
         this.bookingRepository = bookingRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -192,5 +188,34 @@ public class DBSeeder implements CommandLineRunner {
         // add staffs
         List<Staff> staffList = Arrays.asList(staff1, staff2, staff3, staff4, staff5, staff6, staff7);
         this.staffRepository.saveAll(staffList);
+
+        // Users
+        //drop all users
+        userRepository.deleteAll();
+
+        // create users
+        User admin = new User(
+            "admin",
+            "12345678"
+        );
+        User user = new User(
+            "anurag@gmail.com",
+            "12345678"
+        );
+        User user1 = new User(
+                "brian@gmail.com",
+                "12345678"
+        );
+        User user2 = new User(
+            "bao@gmail.com",
+            "12345678"
+        );
+        User user3 = new User(
+            "victoria@gmail.com",
+            "12345678"
+        );
+
+        List<User> users = Arrays.asList(admin, user, user1, user2, user3);
+        this.userRepository.saveAll(users);
     }
 }

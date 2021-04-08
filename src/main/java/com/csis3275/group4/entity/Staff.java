@@ -24,8 +24,6 @@ public class Staff {
         this.staffShift = staffShift;
     }
 
-
-
     public String getId() {
         return id;
     }

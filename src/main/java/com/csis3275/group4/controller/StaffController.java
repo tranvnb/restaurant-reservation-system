@@ -20,6 +20,11 @@ public class StaffController {
         this.staffRepository = staffRepository;
     }
 
+    @PostMapping("/staffdashboard")
+    public String staffDashboard() {
+        return "redirect:/checkuser/staff_dashboard";
+    }
+
     @GetMapping("/staff")
     public String showStaff(Model model){
         model.addAttribute("staffList", staffRepository.findAll());
