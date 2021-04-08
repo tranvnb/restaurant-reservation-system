@@ -35,6 +35,7 @@ public class TableController {
     @Autowired
     private ServiceService serviceService;
 
+//    public TableController() {}
     public TableController(TableRepository tableRepository) {
         this.tableRepository = tableRepository;
     }
@@ -145,6 +146,15 @@ public class TableController {
         model.addAttribute("time",time);
         model.addAttribute("tables", tableRepository.findByisAvailableIsTrue(true));
         return "table_booking";
+    }
+
+//    // test
+    public boolean checkTable(Table table){
+        if(table.getSeatNumber() < 2 || table.getSeatNumber() > 10){
+            return false;
+        }
+        else
+            return true;
     }
 
 }

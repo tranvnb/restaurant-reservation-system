@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Controller
 public class StaffController {
     private StaffRepository staffRepository;
+
+
 
     public StaffController(StaffRepository staffRepository) {
         this.staffRepository = staffRepository;
@@ -51,5 +54,15 @@ public class StaffController {
         staffRepository.save(staff);
 
         return "redirect:/staff";
+    }
+
+    // test
+    public boolean checkStaff(Staff staff){
+        if(staff.getStaffDOB().getYear() < 1970 || staff.getStaffDOB().getYear() > 2005){
+            return false;
+        }
+        else
+            return  true;
+
     }
 }

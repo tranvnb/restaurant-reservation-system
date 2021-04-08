@@ -3,6 +3,7 @@ package com.csis3275.group4.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -11,13 +12,13 @@ public class Staff {
     @Id
     private String id;
     private String staffName;
-    private Date staffDOB;
+    private LocalDate staffDOB;
     private String staffAddress;
     private List<String> staffShift;
 
     public Staff() {}
 
-    public Staff(String staffName, Date staffDOB, String staffAddress, List<String> staffShift){
+    public Staff(String staffName, LocalDate staffDOB, String staffAddress, List<String> staffShift){
         this.staffName = staffName;
         this.staffDOB = staffDOB;
         this.staffAddress = staffAddress;
@@ -40,11 +41,11 @@ public class Staff {
         this.staffName = staffName;
     }
 
-    public Date getStaffDOB() {
+    public LocalDate getStaffDOB() {
         return staffDOB;
     }
 
-    public void setStaffDOB(Date staffDOB) {
+    public void setStaffDOB(LocalDate staffDOB) {
         this.staffDOB = staffDOB;
     }
 
