@@ -3,6 +3,7 @@ package com.csis3275.group4.service;
 import com.csis3275.group4.entity.Booking;
 import com.csis3275.group4.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,13 +35,19 @@ public class TableController {
     @Autowired
     private ServiceService serviceService;
 
+//    public TableController() {}
     public TableController(TableRepository tableRepository) {
         this.tableRepository = tableRepository;
     }
 
     @GetMapping("/managerdashboard")
     public String managerDashboard() {
-        return "manager_dashboard";
+        return "redirect:/checkuser/manager_dashboard";
+    }
+
+    @GetMapping("/staffdashboard")
+    public String staffDashboard() {
+        return "redirect:/checkuser/staff_dashboard";
     }
 
 
@@ -103,7 +110,6 @@ public class TableController {
         }
         tableRepository.save(table);
         return "redirect:/table";
-
     }
 
     @GetMapping("/deleteTable/{id}")
@@ -140,6 +146,15 @@ public class TableController {
         model.addAttribute("time",time);
         model.addAttribute("tables", tableRepository.findByisAvailableIsTrue(true));
         return "table_booking";
+    }
+
+//    // test
+    public boolean checkTable(Table table){
+        if(table.getSeatNumber() < 2 || table.getSeatNumber() > 10){
+            return false;
+        }
+        else
+            return true;
     }
 
 }

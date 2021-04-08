@@ -69,4 +69,12 @@ public class ServiceController {
         return "redirect:/service";
     }
 
+    // Test
+    public boolean checkService(Service service) {
+        if(service.getServicePrice() > 200 || service.getServicePrice() < 20){
+            return  false;
+        }
+        else  return true;
+    }
+
 }
