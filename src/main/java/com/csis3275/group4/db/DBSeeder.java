@@ -195,12 +195,16 @@ public class DBSeeder implements CommandLineRunner {
 
         // create users
         User admin = new User(
-            "brian@gmail.com",
+            "admin",
             "12345678"
         );
         User user = new User(
             "anurag@gmail.com",
             "12345678"
+        );
+        User user1 = new User(
+                "brian@gmail.com",
+                "12345678"
         );
         User user2 = new User(
             "bao@gmail.com",
@@ -211,7 +215,7 @@ public class DBSeeder implements CommandLineRunner {
             "12345678"
         );
 
-        List<User> users = Arrays.asList(admin, user, user2, user3);
+        List<User> users = Arrays.asList(admin, user, user1, user2, user3);
         this.userRepository.saveAll(users);
     }
 }

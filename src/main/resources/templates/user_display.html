@@ -27,15 +27,22 @@
             <a class="navbar-brand" href="/booking">
                 Booking
             </a>
+            <a class="navbar-brand" href="/booking">
+                Users
+            </a>
+            <a class="navbar-brand" href="/logout">
+                Logout
+            </a>
         </div>
     </nav>
     <h1>Welcome to the Vancouver Restaurant</h1><br>
     <!--    <a href="/table">Click here to see tables</a><br>-->
     <a href="/service">Click here to see Service</a><br>
     <a href="/staff">Click here to see Staff</a><br>
+    <a href="/tables">Click here to see Staff</a><br>
     <a href="/booking">Click here to see Booking</a><br><hr>
 
-    <h1>The List of Tables</h1>
+    <h1>The List of Users</h1>
     <div class="container align-center col-md-6">
         <table class="table">
             <thead>
@@ -52,17 +59,17 @@
                 <td th:text="${user.getId()}"></td>
                 <td th:text="${user.getUserName()}"></td>
                 <td th:text="${user.getPassword()}"></td>
-                            <td>
-                                <a th:href="@{'/deleteUser/' + ${user.getId()}}">Delete</a>
-                            </td>
-                            <td>
-                                <a th:href="@{'/changePass/' + ${user.getId()}}">Edit</a>
-                            </td>
+                <td>
+                    <a th:href="@{'/deleteUser/' + ${user.getId()}}">Delete</a>
+                </td>
+                <td>
+                    <a th:href="@{'/changePass/' + ${user.getId()}}">Edit</a>
+                </td>
             </tr>
             <tr>
-                <!--            <td>-->
-                <!--                <a th:href="@{'/createUser'}">Create</a>-->
-                <!--            </td>-->
+                <td>
+                    <a th:href="@{'/createUser'}">Create</a>
+                </td>
             </tr>
             </tbody>
 

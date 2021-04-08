@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,7 +41,12 @@ public class TableController {
 
     @GetMapping("/managerdashboard")
     public String managerDashboard() {
-        return "manager_dashboard";
+        return "redirect:/checkuser/manager_dashboard";
+    }
+
+    @GetMapping("/staffdashboard")
+    public String staffDashboard() {
+        return "redirect:/checkuser/staff_dashboard";
     }
 
 

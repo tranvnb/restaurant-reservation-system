@@ -19,21 +19,29 @@
             <a class="navbar-brand" href="/staffdashboard">
                 Staff
             </a>
-            <a class="navbar-brand" href="/managerdashboard">
-                Manager
+            <a class="navbar-brand" href="/logout">
+                Logout
             </a>
         </div>
     </nav>
-    <div class="container">
-        <h2>Login</h2>
-    </div>
-    <form th:action="@{/authorise}" th:object="${user}" method="post">
-        <label>User Name: </label>
-        <input type="text" th:field="*{UserName}" name="UserName"><br>
-        <label>Password: </label>
-        <input type="password" th:field="*{Password}" name="Password"><br>
-        <input type="submit" value="Submit">
-    </form>
+    <h1>List of Staff</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Staff Name</th>
+            <th>Staff DOB</th>
+            <th>Staff Address</th>
+            <th>Staff Shifts</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="staff : ${staffList}" >
+            <td th:text="${staff.getStaffName()}"></td>
+            <td th:text="${staff.getStaffDOB()}"></td>
+            <td th:text="${staff.getStaffAddress()}"></td>
+            <td th:text="${staff.getStaffShift()}"></td>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>
